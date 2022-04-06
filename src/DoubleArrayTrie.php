@@ -117,7 +117,7 @@ class DoubleArrayTrie
             $newSiblings = [];
 
             if ($this->fetch($siblings[$i], $newSiblings) === 0) {
-                $this->base[$begin + $siblings[$i]->code] =  !empty($this->value) ? -$this->value[$siblings[$i]->left] - 1 : -$siblings[$i]->left - 1;
+                $this->base[$begin + $siblings[$i]->code] = !empty($this->value) ? -$this->value[$siblings[$i]->left] - 1 : -$siblings[$i]->left - 1;
 
                 if (!empty($this->value) && -$this->value[$siblings[$i]->left] - 1 >= 0) {
                     // error -2

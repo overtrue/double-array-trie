@@ -9,7 +9,6 @@ class Node
         public int $depth = 0,
         public int $left = 0,
         public int $right = 0,
-    )
-    {
+    ) {
     }
 }
