@@ -1,15 +1,16 @@
 {
-    "name": "overtrue/php-package",
-    "description": "A PHP package template repository.",
+    "name": "overtrue/double-array-trie",
+    "description": "A PHP implementation of Double Array Trie.",
     "license": "MIT",
     "authors": [
         {
-            "name": "vendor",
-            "email": "name@domain.com"
+            "name": "overtrue",
+            "email": "anzhengchao@gmail.com"
         }
     ],
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.0.2",
+        "ext-mbstring": "*"
     },
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^2.8",
@@ -21,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Vendor\\Package\\": "src"
+            "Overtrue\\DoubleArrayTrie\\": "src"
         }
     },
     "extra": {

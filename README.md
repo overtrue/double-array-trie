@@ -1,6 +1,6 @@
-# PHP Package Template
+# DoubleArrayTrie
 
-A template repository for PHP package.
+A PHP implementation of Double Array Trie.
 
 [![Sponsor me](https://github.com/overtrue/overtrue/blob/master/sponsor-me-button-s.svg?raw=true)](https://github.com/sponsors/overtrue)
 
@@ -8,7 +8,7 @@ A template repository for PHP package.
 ## Installing
 
 ```shell
-$ composer require vendor/package -vvv
+$ composer require overtrue/double-array-trie -vvv
 ```
 
 ## Usage
