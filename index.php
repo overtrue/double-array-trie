@@ -3,13 +3,11 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use Overtrue\DoubleArrayTrie\DoubleArrayTrie;
+use Overtrue\DoubleArrayTrie\Factory;
+use Overtrue\DoubleArrayTrie\Matcher;
 
-$trie = new DoubleArrayTrie();
-$trie->build(['一举', '一举一动', '一举成名', '一举成名天下知', '万能', '万能胶']);
+$trie = new Matcher(Factory::from('trie.json'));
 
-
-$result = $trie->prefixSearch('万能', function ($key, $value) {
-    echo $key . ':' . $value . PHP_EOL;
-});
+$result = $trie->prefixSearch('一举');
 
 var_dump($result);

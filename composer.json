@@ -17,7 +17,6 @@
         "friendsofphp/php-cs-fixer": "^3.0",
         "mockery/mockery": "^1.2",
         "phpunit/phpunit": "^9.0",
-        "vimeo/psalm": "^4.10",
         "jetbrains/phpstorm-attributes": "^1.0"
     },
     "autoload": {
@@ -60,5 +59,10 @@
         "test": "Run all tests.",
         "check-style": "Run style checks (only dry run - no fixing!).",
         "fix-style": "Run style checks and fix violations."
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
     }
 }
