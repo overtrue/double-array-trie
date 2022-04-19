@@ -102,11 +102,11 @@ class DoubleArrayTrie
 
         // 此循环体的目标是找出满足base[begin + a1...an]  == 0的n个空闲空间,a1...an是siblings中的n个节点
         outer: while (true) {
-            $position ++;
+            $position++;
             if ($this->getCheckValue($position) !== 0) {
                 $nonZeroCount++;
                 continue;
-            } else if ($first === 0) {
+            } elseif ($first === 0) {
                 $this->nextCheckPosition = $position;
                 $first = 1;
             }
