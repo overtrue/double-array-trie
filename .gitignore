@@ -7,5 +7,6 @@ sftp-config.json
 composer.lock
 .subsplit
 .php_cs.cache
-cghooks.lock.phpunit.result.cache
+cghooks.lock
+.phpunit.result.cache
 .php-cs-fixer.cache
