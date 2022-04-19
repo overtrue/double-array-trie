@@ -8,6 +8,8 @@ $trie = new DoubleArrayTrie();
 $trie->build(['一举', '一举一动', '一举成名', '一举成名天下知', '万能', '万能胶']);
 
 
-$trie->prefixSearch('万能', function ($key, $value) {
+$result = $trie->prefixSearch('万能', function ($key, $value) {
     echo $key . ':' . $value . PHP_EOL;
 });
+
+var_dump($result);
