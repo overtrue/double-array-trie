@@ -64,20 +64,18 @@ match a string no values:
 
 ```php
 // ['foo', 'bar', 'baz']
-$matcher->match('foo');
-// true
-$matcher->match('oo');
-// false
+
+$matcher->match('foo'); // true
+$matcher->match('oo'); // false
 ```
 
 match a string with values:
 
 ```php
 // ['一举' => 'yi ju', '一举一动' => 'yi ju yi dong']
-$matcher->match('一举');
-// 'yi ju'
-$matcher->match('一举一');
-// false
+
+$matcher->match('一举'); // 'yi ju'
+$matcher->match('一举一'); // false
 ```
 
 ## Credits
