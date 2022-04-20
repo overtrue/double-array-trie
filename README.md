@@ -1,5 +1,11 @@
 # DoubleArrayTrie
 
+[![Testing](https://github.com/overtrue/double-array-trie/actions/workflows/test.yml/badge.svg)](https://github.com/overtrue/double-array-trie/actions/workflows/test.yml)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/overtrue/laravel-socialite?style=flat-square)
+![GitHub License](https://img.shields.io/github/license/overtrue/laravel-socialite?style=flat-square)
+![Packagist Downloads](https://img.shields.io/packagist/dt/overtrue/laravel-socialite?style=flat-square)
+
+
 A PHP implementation of Double Array Trie.
 
 [![Sponsor me](https://github.com/overtrue/overtrue/blob/master/sponsor-me-button-s.svg?raw=true)](https://github.com/sponsors/overtrue)
