@@ -29,7 +29,7 @@ class Matcher
             $nextState = $this->trie->getBaseValue($position);
 
             if ($base === $this->trie->getCheckValue($position) && $nextState < 0) {
-                $result[$word] = $this->hasValues ? $this->trie->getValue(-$nextState - 1) : -$nextState - 1;
+                $result[$word] = $this->hasValues ? $this->trie->getValue($position) : -$nextState - 1;
             }
 
             $word .= \mb_chr($code);
@@ -47,7 +47,7 @@ class Matcher
         $nextState = $this->trie->getBaseValue($position);
 
         if ($base == $this->trie->getCheckValue($position) && $nextState < 0) {
-            $result[$word] = $this->hasValues ? $this->trie->getValue(-$nextState - 1) : -$nextState - 1;
+            $result[$word] = $this->hasValues ? $this->trie->getValue($position) : -$nextState - 1;
         }
 
         return $this->hasValues ? $result : array_keys($result);

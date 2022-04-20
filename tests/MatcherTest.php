@@ -63,6 +63,14 @@ class MatcherTest extends TestCase
         $trie = $builder->build($words);
         $matcher = new Matcher($trie);
 
-        $this->assertSame('yi ju yi dong', $matcher->match('一举一动'));
+        $this->assertSame([
+            '一举' => 'yi ju',
+            '一举一动' => 'yi ju yi dong',
+        ], $matcher->prefixMatch('一举一动'));
+
+        $this->assertSame([
+            '一举' => 'yi ju',
+            '一举一动' => 'yi ju yi dong',
+        ], $matcher->prefixMatch('一举一动都很奇怪'));
     }
 }

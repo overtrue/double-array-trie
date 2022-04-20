@@ -78,6 +78,17 @@ $matcher->match('一举'); // 'yi ju'
 $matcher->match('一举一'); // false
 ```
 
+### prefix matching
+
+```php
+// ['一举' => 'yi ju', '一举一动' => 'yi ju yi dong', '一举成名' => 'yi ju cheng ming',]
+$matcher->matchPrefix('一举一动都很奇怪'); 
+// [
+//  '一举' => 'yi ju',
+//  '一举一动' => 'yi ju yi dong'
+//]
+```
+
 ## Credits
 
  - [darts-java: Double-ARray Trie System Java implementation.](https://github.com/komiya-atsushi/darts-java)
