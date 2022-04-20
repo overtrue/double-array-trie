@@ -47,4 +47,22 @@ class MatcherTest extends TestCase
         $this->assertSame('wan neng jiao', $matcher->match('万能胶'));
         $this->assertFalse($matcher->match('万能胶布'));
     }
+
+    public function test_it_can_prefix_match()
+    {
+        $words = [
+            '一举' => 'yi ju',
+            '一举一动' => 'yi ju yi dong',
+            '一举成名' => 'yi ju cheng ming',
+            '一举成名天下知' => 'yi ju cheng ming tian xia zhi',
+            '万能' => 'wan neng',
+            '万能胶' => 'wan neng jiao'
+        ];
+
+        $builder = new Builder();
+        $trie = $builder->build($words);
+        $matcher = new Matcher($trie);
+
+        $this->assertSame('yi ju yi dong', $matcher->match('一举一动'));
+    }
 }
