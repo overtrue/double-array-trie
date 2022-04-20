@@ -8,6 +8,9 @@ class Node
         // 节点字符的编码
         public ?int $code = null,
 
+        // 附带的值
+        public mixed $value = null,
+
         // 节点所在树的深度
         public int $depth = 0,
 

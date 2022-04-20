@@ -6,30 +6,27 @@ class Builder
 {
     protected array $used = [];
     protected array $words = [];
+    protected array $values = [];
     protected int $nextCheckPosition = 0;
 
     /**
      * @throws Exception
      */
-    public function build(array $words, array $values = [])
+    public function build(array $words): DoubleArrayTrie
     {
-        $hasValues = !empty($values);
+        $values = [];
+        if (!\array_is_list($words)) {
+            \ksort($words);
 
-        if ($hasValues) {
-            if (count($words) !== count($values)) {
-                throw new Exception('The number of words and values must be equal.');
-            }
-
-            $tmp = array_combine($words, $values);
-            \ksort($tmp);
-            $words = array_keys($tmp);
-            $values = array_values($tmp);
+            [$words, $values] = [array_keys($words), array_values($words)];
+        } else {
+            \sort($words);
         }
 
         $trie = new DoubleArrayTrie();
 
         $this->words = $words;
-        $trie->values = $values;
+        $this->values = $values;
 
         $root = new Node(right: \count($words));
 
@@ -55,6 +52,7 @@ class Builder
             }
 
             $tmp = $this->words[$i];
+            $value = $this->values[$i] ?? null;
             $currentCode = 0;
 
             if (\mb_strlen($tmp) !== $parent->depth) {
@@ -68,7 +66,7 @@ class Builder
             $siblingsCount = \count($siblings);
 
             if ($currentCode !== $prevCode || $siblingsCount === 0) {
-                $tmpNode = new Node(code: $currentCode, depth: $parent->depth + 1, left: $i);
+                $tmpNode = new Node(code: $currentCode, value: $value, depth: $parent->depth + 1, left: $i);
 
                 if ($siblingsCount > 0) {
                     $siblings[$siblingsCount - 1]->right = $i;
@@ -115,7 +113,6 @@ class Builder
 
             for ($i = 1; $i < \count($siblings); $i++) {
                 if (($trie->getCheckValue($begin + $siblings[$i]->code)) !== 0) {
-                    var_dump(111);
                     goto outer;
                 }
             }
@@ -141,6 +138,7 @@ class Builder
             // 一个词的终止且不为其他词的前缀，其实就是叶子节点
             if (empty($newSiblings)) {
                 $trie->base[$begin + $siblings[$i]->code] = -$siblings[$i]->left - 1;
+                empty($this->values) || $trie->values[$begin + $siblings[$i]->code] = $siblings[$i]->value;
             } else {
                 $trie->base[$begin + $siblings[$i]->code] = $this->insert($trie, $newSiblings);
             }

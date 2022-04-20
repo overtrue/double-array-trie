@@ -8,20 +8,32 @@ class Exporter
     {
     }
 
-    public function toFile(string $path): bool|int
+    public function toFile(string $path): int|bool
     {
-        return \file_put_contents($path, \json_encode($this->trie->toArray()));
+        if (\str_ends_with($path, '.php')) {
+            return $this->toPHP($path);
+        }
+
+        return $this->writeFile($path, \json_encode($this->trie->toArray()));
     }
 
     public function toPHP(?string $path = null): string
     {
-        $contents = "<?php return ".var_export($this->trie->toArray(), true);
+        $contents = "<?php return ".var_export($this->trie->toArray(), true).';';
 
         if ($path !== null) {
-            \mkdir(\dirname($path), 0777, true);
-            \file_put_contents($path, $contents);
+            $this->writeFile($path, $contents);
         }
 
         return $contents;
+    }
+
+    public function writeFile(string $path, string $contents): int|bool
+    {
+        if (!\file_exists(\dirname($path))) {
+            \mkdir(\dirname($path), 0777, true);
+        }
+
+        return \file_put_contents($path, $contents);
     }
 }

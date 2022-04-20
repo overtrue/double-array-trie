@@ -4,24 +4,24 @@ namespace Overtrue\DoubleArrayTrie;
 
 class Factory
 {
-    public static function from(string $path, string $type = 'json'): DoubleArrayTrie
+    public static function loadFromFile(string $path, string $type = 'json'): DoubleArrayTrie
     {
         if (!file_exists($path)) {
             throw new \InvalidArgumentException("File not found: $path");
         }
 
-        if ($type === 'json' || \str_ends_with($path, '.json')) {
-            return self::fromJson($path);
+        if ($type === 'php' || \str_ends_with($path, '.php')) {
+            return self::loadFromPHPFile($path);
         }
 
-        if ($type === 'php' || \str_ends_with($path, '.php')) {
-            return self::fromPHP($path);
+        if ($type === 'json' || \str_ends_with($path, '.json')) {
+            return self::loadFromJsonFile($path);
         }
 
         throw new \InvalidArgumentException("Unsupported file type: $type");
     }
 
-    public static function fromJson(string $path): DoubleArrayTrie
+    public static function loadFromJsonFile(string $path): DoubleArrayTrie
     {
         $data = \json_decode(\file_get_contents($path) ?: '', true) ?: [];
 
@@ -32,7 +32,7 @@ class Factory
         return new DoubleArrayTrie($data['base'], $data['check'], $data['values']);
     }
 
-    public static function fromPHP(string $path): DoubleArrayTrie
+    public static function loadFromPHPFile(string $path): DoubleArrayTrie
     {
         $data = require $path;
 

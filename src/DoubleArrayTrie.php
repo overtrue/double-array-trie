@@ -24,6 +24,21 @@ class DoubleArrayTrie
         return $this->base[$position] ?? 0;
     }
 
+    public function getValue(int $position): ?string
+    {
+        return $this->values[$position] ?? null;
+    }
+
+    public function hasValues(): bool
+    {
+        return count($this->values) > 0;
+    }
+
+    public function hasPosition(int $position): bool
+    {
+        return array_key_exists($position, $this->base);
+    }
+
     #[ArrayShape(['base' => "array", 'check' => "array", 'values' => "array"])]
     public function toArray(): array
     {
