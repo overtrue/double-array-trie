@@ -88,7 +88,7 @@ $matcher->match('一举一'); // false
 
 ```php
 // ['一举' => 'yi ju', '一举一动' => 'yi ju yi dong', '一举成名' => 'yi ju cheng ming',]
-$matcher->matchPrefix('一举一动都很奇怪'); 
+$matcher->prefixMatch('一举一动都很奇怪'); 
 // [
 //  '一举' => 'yi ju',
 //  '一举一动' => 'yi ju yi dong'
