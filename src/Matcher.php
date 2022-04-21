@@ -28,6 +28,7 @@ class Matcher
             $position = $base;
             $nextState = $this->trie->getBaseValue($position);
 
+            // 匹配成功
             if ($base === $this->trie->getCheckValue($position) && $nextState < 0) {
                 $result[$word] = $this->hasValues ? $this->trie->getValue($position) : -$nextState - 1;
             }
@@ -39,7 +40,7 @@ class Matcher
             if ($base == $this->trie->getCheckValue($position)) {
                 $base = $this->trie->getBaseValue($position);
             } else {
-                return $result;
+                return $this->hasValues ? $result : array_keys($result);
             }
         }
 
